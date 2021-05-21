@@ -1,0 +1,14 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <h5 class="my-0 mr-md-auto font-weight-normal">Top 10 Cryptos</h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a *ngIf="isAdmin" class="p-2 text-dark" routerLink="/admin">Admin</a>
+    <a class="p-2 text-dark" routerLink="/dashboard">Dashboard</a>
+  </nav>
+  <a *ngIf="!isLogged" class="btn btn-outline-primary mr-3" routerLink="/auth/login">Sign in</a>
+  <a *ngIf="!isLogged" class="btn btn-outline-primary" routerLink="/auth/register">Sign up</a>
+  <a *ngIf="isLogged" class="btn btn-outline-primary" (click)="tryLogOut()">Sign out</a>
+</div>
+
+<div class="container"> 
+  <router-outlet></router-outlet>
+</div>

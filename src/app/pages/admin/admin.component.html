@@ -1,0 +1,54 @@
+<div class="row justify-content-center my-5">
+  <h3>Admin Panel</h3>
+</div>
+<div class="table-responsive-sm">
+  <table class="table table-striped text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Ticker</th>
+        <th scope="col">Price</th>
+        <th scope="col">SellAmount</th>
+        <th scope="col">AvailableCryptos</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td><input type="text" [(ngModel)]="newCrypto.name" class="form-control" required></td>
+        <td><input type="number" [(ngModel)]="newCrypto.ticker" class="form-control" required></td>
+        <td><input type="number" [(ngModel)]="newCrypto.price" class="form-control" required></td>
+        <td><input type="number" [(ngModel)]="newCrypto.sell_amount" class="form-control" required></td>
+        <td><input type="number" [(ngModel)]="newCrypto.avalible_cryptos" class="form-control" required></td>
+        <td>
+          <button type="button" class="btn btn-success" (click)="tryAddNew()">Add New</button> 
+        </td>
+      </tr>
+      <tr *ngFor="let crypto of cryptos; index as i;">
+        <th scope="row">{{i + 1}}</th>
+        <td *ngIf="editItem!=crypto.id">{{crypto.name}}</td>
+        <td *ngIf="editItem!=crypto.id">{{crypto.ticker}}</td>
+        <td *ngIf="editItem!=crypto.id">{{crypto.price}}</td>
+        <td *ngIf="editItem!=crypto.id">{{crypto.sell_amount}}</td>
+        <td *ngIf="editItem!=crypto.id">{{crypto.avalible_cryptos}}</td>
+        <td *ngIf="editItem==crypto.id"><input type="text" [(ngModel)]="updateCrypto.name" class="form-control" required></td>
+        <td *ngIf="editItem==crypto.id"><input type="number" [(ngModel)]="updateCrypto.ticker" class="form-control" required></td>
+        <td *ngIf="editItem==crypto.id"><input type="number" [(ngModel)]="updateCrypto.price" class="form-control" required></td>
+        <td *ngIf="editItem==crypto.id"><input type="number" [(ngModel)]="updateCrypto.sell_amount" class="form-control" required></td>
+        <td *ngIf="editItem==crypto.id"><input type="number" [(ngModel)]="updateCrypto.avalible_cryptos" class="form-control" required></td>
+        <td>
+          <div *ngIf="editItem!=crypto.id">
+            <i class="fa fa-edit" style="font-size: 24px;" (click)="tryEdit(crypto)"></i>&nbsp;&nbsp;
+            <i class="fa fa-minus-circle" style="font-size: 24px;" (click)="tryDelete(crypto)"></i>
+          </div>          
+          <div *ngIf="editItem==crypto.id">
+            <i class="fa fa-save" style="font-size: 24px;" (click)="saveEdit()"></i>&nbsp;&nbsp;
+            <i class="fa fa-remove" style="font-size: 24px;" (click)="cancelEdit()"></i>
+          </div>
+        </td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
